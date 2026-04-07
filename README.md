@@ -77,10 +77,52 @@ Execute the code.
 Debug errors if any and re-run.
 Observe the generated waveforms.
 
+PROGRAM:
+
+```
+clear;
+
+// Parameters
+
+Ac = 7.3;
+Am = 14.6;
+Fm = 286;
+Fc = 2860;
+Fs = 28600;
+kp = %pi/4;
+
+// Time vector
+t = 0:1/Fs:2/Fm;
+
+// Message signal
+E1 = Am * sin(2 * %pi * Fm * t);
+
+subplot(3,1,1);
+plot(t, E1);
+xtitle("Message Signal", "Time (s)", "Amplitude");
+xgrid();
+
+// Carrier signal
+E2 = Ac * sin(2 * %pi * Fc * t);
+
+subplot(3,1,2);
+plot(t, E2);
+xtitle("Carrier Signal", "Time (s)", "Amplitude");
+xgrid();
+
+// Phase Modulated signal
+E3 = Ac * sin(2 * %pi * Fc * t + kp * E1);
+
+subplot(3,1,3);
+plot(t, E3);
+xtitle("Phase Modulated Signal", "Time (s)", "Amplitude");
+xgrid();
+```
 MODEL GRAPHS
 
-TABULATIONS
+<img width="752" height="572" alt="image" src="https://github.com/user-attachments/assets/8f931e83-28f6-4d5c-b625-25661401d5d3" />
 
-CALCULATIONS
 
 RESULT
+
+ Thus the phase modulation and demodulation using scilab is verified.
